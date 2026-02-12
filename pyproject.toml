@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yahoo-news-scraper"
+version = "0.1.0"
+description = "Scraper for Yahoo! News articles and comments using Selenium"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "HirokiMiyabe" }
+]
+
+dependencies = [
+  "selenium>=4.10",
+  "beautifulsoup4>=4.12",
+  "requests>=2.31",
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "matplotlib>=3.7"
+]
+
+keywords = ["yahoo", "news", "scraping", "selenium"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
