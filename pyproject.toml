@@ -1,34 +1,45 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "yahoo-news-scraper"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Scraper for Yahoo! News articles and comments"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+# 非公開運用（社外・PyPI へは配布しない）
+license = "LicenseRef-Proprietary"
+license-files = ["LICENSE"]
 authors = [
   { name = "HirokiMiyabe" }
+]
+keywords = ["yahoo", "news", "scraping", "comments"]
+classifiers = [
+  # PyPI は "Private ::" で始まる classifier を持つパッケージのアップロードを拒否する
+  "Private :: Do Not Upload",
+  "Programming Language :: Python :: 3",
 ]
 
 dependencies = [
   "beautifulsoup4>=4.12",
   "requests>=2.31",
-  "pandas>=2.0",
-  "numpy>=1.24",
-  "matplotlib>=3.7"
+  "pandas>=2.0"
 ]
 
 [project.optional-dependencies]
 # 返信 API が使えないときのフォールバック（ブラウザで「もっと見る」を押して読み込む）
 selenium = ["selenium>=4.10"]
-
-keywords = ["yahoo", "news", "scraping", "comments"]
+dev = ["pytest>=7"]
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "code"}
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["code"]
+
+[tool.setuptools.dynamic]
+version = { attr = "yahoo_news_scraper._version.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
