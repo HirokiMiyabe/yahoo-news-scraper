@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "yahoo-news-scraper"
 version = "0.1.0"
-description = "Scraper for Yahoo! News articles and comments using Selenium"
+description = "Scraper for Yahoo! News articles and comments"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -14,7 +14,6 @@ authors = [
 ]
 
 dependencies = [
-  "selenium>=4.10",
   "beautifulsoup4>=4.12",
   "requests>=2.31",
   "pandas>=2.0",
@@ -22,7 +21,11 @@ dependencies = [
   "matplotlib>=3.7"
 ]
 
-keywords = ["yahoo", "news", "scraping", "selenium"]
+[project.optional-dependencies]
+# 返信 API が使えないときのフォールバック（ブラウザで「もっと見る」を押して読み込む）
+selenium = ["selenium>=4.10"]
+
+keywords = ["yahoo", "news", "scraping", "comments"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
